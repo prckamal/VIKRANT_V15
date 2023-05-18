@@ -15,7 +15,7 @@ public class DemoStatic {
     }
 
     public static void main(String[] args) {
-        // Accessing static variable
+        //Accessing static variable
         System.out.println("Static variable value: " + staticVariable);
 
         // Accessing static method
