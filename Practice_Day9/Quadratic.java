@@ -1,5 +1,6 @@
 import static java.lang.Math.sqrt;
 
+
 public class Quadratic {
 
     public void calc(int a,int b,int c) {
