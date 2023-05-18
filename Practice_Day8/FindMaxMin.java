@@ -1,5 +1,4 @@
 import java.time.Clock;
-
 public class FindMaxMin {
 
     public void additionOfNumber(int a, int b) {
