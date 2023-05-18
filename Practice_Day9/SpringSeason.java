@@ -1,5 +1,6 @@
 public class SpringSeason {
 
+
     public void checkSpringSeason(int m,int d){
         boolean isSpringSeason;
         isSpringSeason = (m>3 && m<6) || (m==3 && d>=20) || (m==6 && d<=20);
