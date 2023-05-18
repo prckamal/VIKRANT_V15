@@ -1,5 +1,4 @@
 import static java.lang.Math.sqrt;
-
 public class Distance {
 
     public void calc(int x,int y){
