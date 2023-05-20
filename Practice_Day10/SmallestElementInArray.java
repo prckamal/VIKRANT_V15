@@ -16,7 +16,7 @@ public class SmallestElementInArray {
         //Display element
         System.out.println("Smallest Element is: "+num);
     }
-    public static void main(String[] args){
+    public static void main(String[] args){ 
         int[] val;
         val = new int[5];
         if(args.length > 5){
