@@ -7,7 +7,7 @@ public class CouponNumberGenerator {
         System.out.println("Total random numbers needed to have all distinct numbers: " + totalRandomNumbers);
     }
 
-    // Method to generate distinct coupon numbers
+    // Method to generate distinct coupon numbers 
     public static int generateDistinctCoupons(int[] coupons) {
         int[] generatedCoupons = new int[coupons.length];
         int totalRandomNumbers = 0;
