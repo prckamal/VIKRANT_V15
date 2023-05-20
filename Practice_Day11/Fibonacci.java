@@ -1,4 +1,4 @@
-public class FibonacciSeries {
+public class FibonacciSeries { 
     public static void main(String[] args) {
         int count = 10; // Number of terms to generate in the Fibonacci series
 
