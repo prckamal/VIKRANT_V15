@@ -14,7 +14,7 @@ public class ArraySorter {
         printArray(array);
     }
 
-    // Bubble sort algorithm to sort the array in ascending order
+    // Bubble sort algorithm to sort the array in ascending order 
     public static void bubbleSort(int[] array) {
         int n = array.length;
 
