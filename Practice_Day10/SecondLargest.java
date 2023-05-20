@@ -12,7 +12,7 @@ public class SecondLargestNumber {
         }
     }
 
-    // Method to find the second largest number in an array
+    // Method to find the second largest number in an array 
     public static int findSecondLargest(int[] array) {
         int largest = Integer.MIN_VALUE;
         int secondLargest = Integer.MIN_VALUE;
