@@ -13,7 +13,7 @@ public class DuplicateElements {
             frequencyMap.put(element, frequencyMap.getOrDefault(element, 0) + 1);
         }
 
-        // Print the duplicate elements
+        // Print the duplicate elements 
         System.out.println("Duplicate elements in the array:");
         for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
             if (entry.getValue() > 1) {
