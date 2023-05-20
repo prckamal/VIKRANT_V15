@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Stopwatch {
+public class Stopwatch { 
     private long startTime;
     private long endTime;
 
