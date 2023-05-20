@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class FrequencyCounter {
+public class FrequencyCounter { 
     public static void main(String[] args) {
         int[] array = {1, 2, 3, 2, 4, 1, 5, 2, 3};
         int n = array.length;
