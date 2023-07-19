@@ -1,0 +1,153 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.*;
+
+class Book{
+    String title;
+    double price;
+
+    public Book(String title,double price){
+        this.title = title;
+        this.price = price;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+
+class BookStore{
+    List<Book> books;
+    int numBooks;
+
+    String url = "jdbc:mysql://localhost:3306/sqldb";
+    String username = "root";
+    String password = "Aetins@2019";
+
+
+    Connection connection = null;
+    PreparedStatement statement = null;
+
+    public BookStore(){
+        books = new ArrayList<>();
+        numBooks = 0;
+    }
+
+    public void addBook(Book book){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            // Establish connection
+            connection = DriverManager.getConnection(url, username, password);
+            String insertQuery = "INSERT INTO book (title,price) VALUES (?, ?)";
+            statement = connection.prepareStatement(insertQuery);
+            statement.setString(1,book.getTitle());
+            statement.setDouble(2,book.getPrice());
+            statement.executeUpdate();
+            books.add(book);
+            numBooks++;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void removeBook(int bookPos){
+        Book b = books.get(bookPos);
+        try {
+            // Establish connection
+        connection = DriverManager.getConnection(url, username, password);
+        String deleteQuery = "Delete from book where title=?";
+        statement = connection.prepareStatement(deleteQuery);
+        statement.setString(1,b.getTitle());
+        statement.executeUpdate();
+        System.out.println(b.getTitle());
+        books.remove(bookPos);
+        numBooks--;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void searchBook(String title){
+        int i = 0;
+        for(Book book : books){
+            if (book.title.equals(title)){
+                System.out.println(title+" Book Found");
+                i =1;
+            }
+        }
+        if (i==0){
+            System.out.println(title+" Book not Found");
+        }
+
+    }
+
+    public void displayBook(){
+
+        for(Book book: books){
+            System.out.println("Book Name "+book.title+ " => "+book.price);
+        }
+    }
+
+    public void averagePrice(){
+        double totalPrice=0;
+        double averagePrice=0;
+        for(Book book : books){
+            totalPrice+=book.price;
+        }
+        averagePrice = totalPrice/numBooks;
+        System.out.println("Average price of all books "+averagePrice);
+    }
+
+    public void sortBooksByPrice(boolean ascending) {
+        Comparator<Book> priceComparator = Comparator.comparing(Book::getPrice);
+        if (!ascending) {
+            priceComparator = priceComparator.reversed();
+        }
+        Collections.sort(books, priceComparator);
+    }
+
+}
+
+public class MainClass {
+
+    public static void main(String[] args){
+
+        BookStore bookStore = new BookStore();
+        System.out.println("Add books");
+        bookStore.addBook(new Book("book1",150));
+        bookStore.addBook(new Book("book2",200));
+        bookStore.addBook(new Book("book3",100));
+        bookStore.addBook(new Book("book4",50));
+        bookStore.addBook(new Book("book5",350));
+
+        bookStore.displayBook();
+        System.out.println("==================================");
+        System.out.print("Remove books ");
+        bookStore.removeBook(3);
+        bookStore.displayBook();
+        System.out.println("Search books");
+        bookStore.searchBook("book4");
+        System.out.println("Average Price");
+        bookStore.averagePrice();
+        System.out.println("==================================");
+        System.out.println("Sort books by price in descending order");
+        bookStore.sortBooksByPrice(false);
+        bookStore.displayBook();
+        System.out.println("==================================");
+        System.out.println("Sort books by price in ascending order");
+        bookStore.sortBooksByPrice(true);
+        bookStore.displayBook();
+    }
+}
